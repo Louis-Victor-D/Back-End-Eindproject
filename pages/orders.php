@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bestellingen</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    
+
+<header>
+    <div class="logo">MangaVerse</div>
+</header>
+
+<div class="container">
+    <h1>Mijn bestellingen</h1>
+
+    <div class="list">
+        <div class="list-item">
+            Bestelling #1234
+            <a class="btn" href="order_detail.php">Bekijk</a>
+        </div>
+    </div>
+</div>
+
+<footer>&copy; 2025 MangaVerse</footer>
 </body>
 </html>
