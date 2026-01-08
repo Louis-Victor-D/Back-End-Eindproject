@@ -27,6 +27,26 @@ class User {
         return $this->balance;
     }
 
+    public function setUserId($user_id) {
+        $this->user_id = $user_id;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function setPassword($password) {
+        $this->password = $password;
+    }
+
+    public function setRole($role) {
+        $this->role = $role;
+    }
+
+    public function setBalance($balance) {
+        $this->balance = $balance;
+    }
+
     public function login($p_email, $p_password) {
         $query = $this->db->prepare("SELECT * FROM users WHERE email = :email");
         $query->bindValue(":email", $p_email);
@@ -60,7 +80,15 @@ class User {
         $query->bindValue(":email", $this->email);
         $query->bindValue(":password", $this->password);
         $query->bindValue(":role", $this->role ?? 'user');
-        $query->bindValue(":balance", $this->balance ?? 0);
+        $query->bindValue(":balance", $this->balance ?? 1000);
 
         return $query->execute();
-}}
+}
+    public function deductBalance($user_id, $amount) {
+        $query = "UPDATE " . $this->table . " SET balance = balance - :amount WHERE user_id = :user_id AND balance >= :amount";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':amount', $amount);
+        return $stmt->execute();
+    }
+}
