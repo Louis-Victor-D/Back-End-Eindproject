@@ -8,7 +8,7 @@ vereisten voldoet.
 [ ] | Gebruiker kan wachtwoord wijzigen
 [x] | Gebruiker kan bestellingen bekijken
 [x] | Noodzakelijke controles werken (prijs > 0, voldoende cash, ...)
-[ ] | Het project staat online en werkt
+[x] | Het project staat online en werkt
 [x] | XSS-aanvallen zijn voorkomen
 [x] | SQL-injectie-aanvallen zijn voorkomen
 [x] | GIT commit messages voldoen aan conventies
