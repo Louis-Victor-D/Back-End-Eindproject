@@ -56,4 +56,10 @@ public function getFiltered($category_id = null, $search = null) {
     $stmt = $this->connect->prepare($sql);
     $stmt->execute($params);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getOne($id) {
+    $stmt = $this->connect->prepare("SELECT * FROM products WHERE product_id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }}

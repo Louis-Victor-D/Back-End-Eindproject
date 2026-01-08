@@ -186,6 +186,96 @@ h1 {
 
 .btn--primary:hover {
     background: #e63f23;
+
+    .balance-section {
+    border: 1px dashed #ff416c;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.balance-section:hover {
+    transform: scale(1.02);
+}
+
+.balance-section h2 {
+    font-size: 28px;
+    letter-spacing: -1px;
+}
+}
+
+.comment-section {
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 2px solid #eee;
+    max-width: 700px;
+}
+
+.comment-section h3 {
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+#commentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+#commentForm textarea {
+    min-height: 90px;
+    resize: vertical;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+#commentForm textarea:focus {
+    outline: none;
+    border-color: #6c63ff;
+}
+
+#commentForm button {
+    align-self: flex-end;
+    padding: 8px 18px;
+    background-color: #6c63ff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+#commentForm button:hover {
+    background-color: #554ee0;
+}
+
+#comments {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.comment {
+    padding: 12px 15px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid #e1e1e1;
+}
+
+.comment strong {
+    color: #222;
+    font-size: 0.9rem;
+}
+
+.comment p {
+    margin-top: 5px;
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.4;
 }
 
 footer {

@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost';
+$host = 'sql312.infinityfree.com';
 $db   = 'mangaversedb';
-$user = 'root';
-$pass = '';
+$user = 'if0_40854685';
+$pass = 'Vob55zDcvq';
 
 try {
     $connect = new PDO(

@@ -101,5 +101,4 @@ class User {
         $query->bindValue(":id", $id);
         $query->execute();
         return $query->fetch(PDO::FETCH_ASSOC);
-    }
-}
+    }}

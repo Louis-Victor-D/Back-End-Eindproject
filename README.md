@@ -3,11 +3,11 @@ Vul onderstaande checklist in om te controleren of je online store aan alle
 vereisten voldoet.
 [x] | Admin kan producten toevoegen, bewerken én verwijderen
 [ ] | Gebruiker kan een aankoop doen via winkelmandje
-[ ] | Gebruiker kan een review of comment plaatsen
+[x] | Gebruiker kan een review of comment plaatsen
 [x] | Gebruiker kan producten filteren per categorie
 [ ] | Gebruiker kan wachtwoord wijzigen
 [x] | Gebruiker kan bestellingen bekijken
-[ ] | Noodzakelijke controles werken (prijs > 0, voldoende cash, ...)
+[x] | Noodzakelijke controles werken (prijs > 0, voldoende cash, ...)
 [ ] | Het project staat online en werkt
 [x] | XSS-aanvallen zijn voorkomen
 [x] | SQL-injectie-aanvallen zijn voorkomen
