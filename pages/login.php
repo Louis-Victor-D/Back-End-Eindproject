@@ -38,6 +38,17 @@
 	<title>Document</title>
 	
 </head>
+
+<header>
+    <div class="logo">MangaVerse</div>
+    <nav>
+        <a href="index.php">Home</a>
+        <a href="product.php">Shop</a>
+        <a href="orders.php">Bestellingen</a>
+        <a href="profile.php">Profiel</a>
+    </nav>
+</header>
+
 <body>
 	<div class="MVLogin">
 		<div class="form form--login">
