@@ -38,4 +38,22 @@ class Product {
         $stmt = $this->connect->prepare("DELETE FROM products WHERE product_id = ?");
         return $stmt->execute([$id]);
     }
-}
+
+public function getFiltered($category_id = null, $search = null) {
+    $sql = "SELECT * FROM products WHERE 1=1";
+    $params = [];
+
+    if ($category_id) {
+        $sql .= " AND category_id = ?";
+        $params[] = $category_id;
+    }
+
+    if ($search) {
+        $sql .= " AND title LIKE ?";
+        $params[] = "%$search%";
+    }
+
+    $stmt = $this->connect->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}}

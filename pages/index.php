@@ -39,9 +39,10 @@
 <div class="container">
     <h1>Categorieën</h1>
     <div class="grid">
-        <div class="card">Kleding</div>
-        <div class="card">Extra Merch</div>
+        <div class="card">Merch</div>
+        <div class="card">Figurines</div>
         <div class="card">Manga</div>
+        <div class="card">Wapens</div>
     </div>
 </div>
 

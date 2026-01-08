@@ -47,7 +47,7 @@ class User {
         $this->balance = $balance;
     }
 
-    public function login($p_email, $p_password) {
+ public function login($p_email, $p_password) {
         $query = $this->db->prepare("SELECT * FROM users WHERE email = :email");
         $query->bindValue(":email", $p_email);
         $query->execute();
@@ -63,9 +63,8 @@ class User {
         return false;
     }
 
-     public function signup() {
-        $check = $this->db->prepare(
-            "SELECT user_id FROM users WHERE email = :email");
+    public function signup() {
+        $check = $this->db->prepare("SELECT user_id FROM users WHERE email = :email");
         $check->bindValue(":email", $this->email);
         $check->execute();
 
@@ -73,22 +72,34 @@ class User {
             return false; 
         }
 
+        $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
+
         $query = $this->db->prepare(
             "INSERT INTO users (email, password, role, balance)
              VALUES (:email, :password, :role, :balance)");
 
         $query->bindValue(":email", $this->email);
-        $query->bindValue(":password", $this->password);
+        $query->bindValue(":password", $hashedPassword);
         $query->bindValue(":role", $this->role ?? 'user');
         $query->bindValue(":balance", $this->balance ?? 1000);
 
         return $query->execute();
-}
+    }
+
+    // Fixed this method to match your class properties
     public function deductBalance($user_id, $amount) {
-        $query = "UPDATE " . $this->table . " SET balance = balance - :amount WHERE user_id = :user_id AND balance >= :amount";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':user_id', $user_id);
-        $stmt->bindParam(':amount', $amount);
+        $query = "UPDATE users SET balance = balance - :amount 
+                  WHERE user_id = :user_id AND balance >= :amount";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':user_id', $user_id);
+        $stmt->bindValue(':amount', $amount);
         return $stmt->execute();
+    }
+
+    public function find($id) {
+        $query = $this->db->prepare("SELECT * FROM users WHERE user_id = :id");
+        $query->bindValue(":id", $id);
+        $query->execute();
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 }
