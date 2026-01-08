@@ -1,5 +1,5 @@
 <?php
-        include_once(__DIR__ . '/../src/sys/db.php');
+        include_once(__DIR__ . '/../classes/db.php');
         function canLogin($p_email, $p_password) {
 	    global $connect;
 		$query = $connect->prepare("SELECT * FROM users WHERE email = :email");

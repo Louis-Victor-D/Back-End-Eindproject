@@ -1,5 +1,5 @@
 <?php
-    include_once(__DIR__ . '/../src/sys/db.php');
+    include_once(__DIR__ . '/../classes/db.php');
 
     if(!empty($_POST)){
         $email = $_POST['email'];
