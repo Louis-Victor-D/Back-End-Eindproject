@@ -1,31 +1,25 @@
 <?php
-        include_once(__DIR__ . '/../classes/db.php');
-        function canLogin($p_email, $p_password) {
-	    global $connect;
-		$query = $connect->prepare("SELECT * FROM users WHERE email = :email");
-		$query->bindValue(":email", $p_email);
-		$query->execute();
-		$user = $query->fetch(PDO::FETCH_ASSOC);
-		if ($user && password_verify($p_password, $user['password'])){
-        return true;
-        } else {
-        return false;
-         }
-		}
+session_start();
+include_once(__DIR__ . '/../classes/db.php');
+include_once(__DIR__ . '/../classes/User.php'); 
 
-	if(!empty($_POST)) {
-		$email = $_POST['email'];
-		$password = $_POST['password'];
+if (!empty($_POST)) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-		if( canLogin($email, $password)) {
-			if(canLogin($email, $password)) {
-        session_start(); 
-        $_SESSION['user_id'] = $email; 
-			header('Location: index.php');
-		} else {
-			$error = "Wrong email or password.";
-		}
-	}
+    $user = new User($connect);
+    
+    if ($user->login($email, $password)) {
+        $_SESSION['user_id'] = $user->getUserId();
+        $_SESSION['email'] = $user->getEmail();
+        $_SESSION['role'] = $user->getRole();
+        $_SESSION['balance'] = $user->getBalance();
+        
+        header('Location: index.php');
+        exit;
+    } else {
+        $error = "Wrong email or password.";
+    }
 }
 ?>
 

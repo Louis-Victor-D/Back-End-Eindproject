@@ -1,23 +1,22 @@
 <?php
-    include_once(__DIR__ . '/../classes/db.php');
+session_start();
+require_once __DIR__ . '/../classes/db.php';
+require_once __DIR__ . '/../classes/User.php';
 
-    if(!empty($_POST)){
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+if (!empty($_POST)) {
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
 
-        $options = [
-            'cost' => 13,
-        ];
-        $password = password_hash($password, PASSWORD_BCRYPT, $options);
-       
-        $query = $connect->prepare("INSERT INTO users(email, password) VALUES (:email, :password)");
-        $query->bindValue(":email", $email);
-        $query->bindValue(":password", $password);
+    $user = new User($connect);
 
-        $query -> execute();
-        header("Location: login.php");
-        exit();
-        }
+    if ($user->register($email, $password)) {
+        header('Location: login.php');
+        exit;
+    } else {
+        $error = 'Email already exists';
+    }
+}
+?>
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +40,13 @@
 		<div class="form form--login">
 			<form action="" method="post">
 				<h2 form__title>Sign Up</h2>
-
+	            <?php if(isset($error)): ?>
+				<div class="form__error">
+					<p>
+						<?php echo $error ?>
+					</p>
+				</div>
+				<?php endif; ?>
 				<?php if(isset($error)): ?>
 				<div class="form__error">
 					<p>
